@@ -54,7 +54,7 @@ def print_separator(title: str = "") -> None:
 def exp1_basic():
     print_separator("실험 1: SHA-256 기본 동작 및 결정론적 특성")
 
-    inputs = ["blockchain", "Blockchain", "blockchain!", "", "경북대학교"]
+    inputs = ["blockchain", "Blockchain", "blockchain!", "", "계명대학교"]
     print(f"\n{'입력':20s} | SHA-256 해시")
     print("-" * 70)
     for text in inputs:

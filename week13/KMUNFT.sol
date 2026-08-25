@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title KNUNFT
+ * @title KMUNFT
  * @notice 14주차 실습 — ERC-721 NFT 발행
  *
  * 학습 목표:
@@ -17,7 +17,7 @@ pragma solidity ^0.8.20;
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v5.0.0/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v5.0.0/contracts/access/Ownable.sol";
 
-contract KNUNFT is ERC721URIStorage, Ownable {
+contract KMUNFT is ERC721URIStorage, Ownable {
 
     // ── State ──
     uint256 private _tokenIdCounter;
@@ -27,7 +27,7 @@ contract KNUNFT is ERC721URIStorage, Ownable {
     event NFTMinted(address indexed to, uint256 tokenId, string tokenURI);
 
     constructor()
-        ERC721("KNU NFT", "KNUNFT")
+        ERC721("KMU NFT", "KMUNFT")
         Ownable(msg.sender)
     {}
 
@@ -108,11 +108,11 @@ contract KNUNFT is ERC721URIStorage, Ownable {
  * ─────────────────────────────────────────────
  *
 * {
-*    "name": "KNU NFT #본인_학번_끝네자리",
-*    "description": "경북대학교 블록체인 기술 수업 NFT",
+*    "name": "KMU NFT #본인_학번_끝네자리",
+*    "description": "계명대학교 분산시스템 특강 NFT",
 *    "image": "ipfs://본인_이미지_CID",
 *    "attributes": [
-*        { "trait_type": "Course", "value": "ICAB0203-001" },
+*        { "trait_type": "Course", "value": "A2037-01" },
 *        { "trait_type": "Student", "value": "본인 이름" },
 *        { "trait_type": "Semester", "value": "2026 Spring" }
 *    ]

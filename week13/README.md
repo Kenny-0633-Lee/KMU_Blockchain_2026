@@ -1,10 +1,10 @@
-📅 Week 14 — KNU NFT ERC-721
-경북대학교 블록체인 기술 | ICAB0203-001 | 2026년 1학기
+📅 Week 13 — KMU NFT ERC-721
+계명대학교 대학원 컴퓨터공학과 | Special Topics on Distributed Systems (A2037-01) | 2026년 2학기
 
 📚 강의 자료
 
 강의노트, 실습 가이드, 제출 방법은 모두 Notion 허브에서 확인하세요.
 
-👉 https://kenny-lee.notion.site/blockchain-knu2026
+👉 https://[Notion 강의 허브 — 수강생 개별 초대, 링크는 LMS/이메일로 공지]
 
 허브 접속 후 이번 주차의 강의노트와 실습 가이드를 찾아서 진행해 봅시다!

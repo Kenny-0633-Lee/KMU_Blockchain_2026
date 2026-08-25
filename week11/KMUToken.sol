@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title KNUToken (KNUT)
+ * @title KMUToken (KMUT)
  * @notice 13주차 실습 — ERC-20 토큰 발행
  *
  * 학습 목표:
@@ -19,21 +19,21 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract KNUToken is ERC20, Ownable {
+contract KMUToken is ERC20, Ownable {
     // ── 상수 ──
-    uint256 public constant MAX_SUPPLY = 100_000_000 * 10 ** 18; // 1억 KNUT 최대 발행량
+    uint256 public constant MAX_SUPPLY = 100_000_000 * 10 ** 18; // 1억 KMUT 최대 발행량
 
     // ── 이벤트 (ERC-20 기본 외 추가) ──
     event TokensMinted(address indexed to, uint256 amount);
     event TokensBurned(address indexed from, uint256 amount);
 
     /**
-     * @param initialSupply 초기 발행량 (단위: KNUT, 내부에서 10^18 곱함)
-     * constructor 예시: initialSupply = 1000000 → 1,000,000 KNUT 발행
+     * @param initialSupply 초기 발행량 (단위: KMUT, 내부에서 10^18 곱함)
+     * constructor 예시: initialSupply = 1000000 → 1,000,000 KMUT 발행
      */
     constructor(
         uint256 initialSupply
-    ) ERC20("KNU Token", "KNUT") Ownable(msg.sender) {
+    ) ERC20("KMU Token", "KMUT") Ownable(msg.sender) {
         require(
             initialSupply * 10 ** decimals() <= MAX_SUPPLY,
             "Exceeds maximum supply"
@@ -45,7 +45,7 @@ contract KNUToken is ERC20, Ownable {
     /**
      * @notice 추가 발행 (소유자만)
      * @param to      수신 주소
-     * @param amount  발행량 (단위: KNUT, 10^18 곱하지 않음)
+     * @param amount  발행량 (단위: KMUT, 10^18 곱하지 않음)
      */
     function mint(address to, uint256 amount) public onlyOwner {
         require(
@@ -58,7 +58,7 @@ contract KNUToken is ERC20, Ownable {
 
     /**
      * @notice 토큰 소각 (자신의 토큰만)
-     * @param amount 소각량 (단위: KNUT)
+     * @param amount 소각량 (단위: KMUT)
      */
     function burn(uint256 amount) public {
         _burn(msg.sender, amount * 10 ** decimals());
@@ -67,9 +67,9 @@ contract KNUToken is ERC20, Ownable {
 
     /**
      * @notice 잔액 조회 (사람이 읽기 좋은 단위로)
-     * @return KNUT 단위 잔액 (소수점 이하 버림)
+     * @return KMUT 단위 잔액 (소수점 이하 버림)
      */
-    function balanceOfKNUT(address account) public view returns (uint256) {
+    function balanceOfKMUT(address account) public view returns (uint256) {
         return balanceOf(account) / 10 ** decimals();
     }
 }
@@ -79,8 +79,8 @@ contract KNUToken is ERC20, Ownable {
  * ERC-20 필수 인터페이스 (OpenZeppelin이 구현)
  * ─────────────────────────────────────────────
  *
- * function name()        → "KNU Token"
- * function symbol()      → "KNUT"
+ * function name()        → "KMU Token"
+ * function symbol()      → "KMUT"
  * function decimals()    → 18
  * function totalSupply() → 총 발행량
  * function balanceOf(address) → 주소별 잔액

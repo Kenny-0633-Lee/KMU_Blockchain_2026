@@ -182,7 +182,7 @@ def part4_hmac():
     print()
 
     secret_key = b"shared_secret_between_Alice_and_Bob"
-    message    = b"Transfer 100 KNUT to Carol"
+    message    = b"Transfer 100 KMUT to Carol"
 
     mac = hmac.new(secret_key, message, hashlib.sha256).hexdigest()
     print(f"  메시지 : {message.decode()}")
@@ -190,7 +190,7 @@ def part4_hmac():
     print()
 
     # 변조된 메시지로 검증 실패 확인
-    tampered_message = b"Transfer 10000 KNUT to Carol"
+    tampered_message = b"Transfer 10000 KMUT to Carol"
     tampered_mac     = hmac.new(secret_key, tampered_message, hashlib.sha256).hexdigest()
 
     print(f"  변조 메시지: {tampered_message.decode()}")
