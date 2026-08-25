@@ -1,0 +1,25 @@
+[project]
+name = "blockchain-knu2026"
+version = "0.93.0"
+description = "경북대학교 블록체인 강의 실습 코드 — ICAB0203-001 (2026년 1학기)"
+authors = [{ name = "Kenny Lee", email = "infosec@knu.ac.kr" }]
+requires-python = ">=3.11"
+# [핵심] 모든 실습에 필요한 패키지는 여기에 위치해야 합니다.
+dependencies = [
+    "cryptography>=42.0.0",
+    "ecdsa>=0.19.0",
+    "base58>=2.1.1",
+    "mnemonic>=0.21",
+    "bip-utils>=2.9.3",
+    "web3>=6.20.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.32.5",
+    "beautifulsoup4>=4.14.3",
+    "lxml>=6.1.0",
+]
+
+[tool.uv]
+package = false # 현재 디렉토리를 패키지로 빌드하지 않음 (Win/Mac 충돌 방지 핵심)
+
+[dependency-groups]
+dev = ["pytest>=8.2.0", "ruff>=0.4.0", "mypy>=1.10.0"]

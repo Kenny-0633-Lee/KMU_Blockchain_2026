@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# Node.js
+node_modules/
+.env
+artifacts/
+cache/
+ignition/deployments/
+
+# Hardhat
+artifacts/
+cache/
+typechain-types/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/settings.json
+
+# 민감 정보 — 절대 커밋하지 마세요
+*.env
+.env.local
+private_key.txt
+mnemonic.txt
+
+# 교수용 민감 파일 (CSV, 학생 개인정보, 배포 결과)
+00_Admin_Only/*.csv
+00_Admin_Only/*.json
+!00_Admin_Only/.gitkeep
+00_Scripts/*.py
+!00_Scripts/README.md

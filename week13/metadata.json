@@ -1,0 +1,10 @@
+{
+  "name": "KNU NFT #1234",
+  "description": "경북대학교 블록체인 기술 강의 2026 — 수료 기념 NFT (ICAB0203-001)",
+  "image": "ipfs://bafkreihen2kdck5eskr24gyhipsumzglysq3frrvfkvvrme4p42z66ditu",
+    "attributes": [
+        { "trait_type": "Course", "value": "ICAB0203-001" },
+        { "trait_type": "Student", "value": "이교수" },
+        { "trait_type": "Semester", "value": "2026 Spring" }
+    ]
+}
