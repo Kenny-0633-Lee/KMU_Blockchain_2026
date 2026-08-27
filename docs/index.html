@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KMU Blockchain — 지갑 주소 제출</title>
+<style>
+  body {
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    max-width: 480px;
+    margin: 80px auto;
+    text-align: center;
+    padding: 0 20px;
+    color: #1a1a1a;
+  }
+  h1 { font-size: 1.3rem; margin-bottom: 8px; }
+  p.sub { color: #666; margin-bottom: 32px; }
+  button {
+    background: #f6851b;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  button:disabled { background: #ccc; cursor: not-allowed; }
+  #status { margin-top: 24px; font-size: 0.9rem; color: #444; min-height: 40px; }
+  #address { font-family: monospace; font-size: 0.85rem; word-break: break-all; margin-top: 8px; }
+  .error { color: #d33; }
+  .warn { background: #fff8e1; border: 1px solid #f5c518; border-radius: 8px; padding: 12px; margin-top: 24px; font-size: 0.85rem; text-align: left; }
+</style>
+</head>
+<body>
+
+<h1>🔗 KMU Blockchain — Sepolia 지갑 주소 제출</h1>
+<p class="sub">MetaMask를 연결하면 지갑 주소가 자동으로 제출 폼에 입력됩니다.</p>
+
+<button id="connectBtn">🦊 Connect Wallet (MetaMask)</button>
+
+<div id="status"></div>
+
+<div class="warn">
+  ⚠️ 이 페이지는 지갑 <b>주소만</b> 읽어옵니다. 서명 요청이나 자산 접근을 요구하지 않습니다.
+  MetaMask가 설치되어 있지 않다면 <a href="https://metamask.io/download" target="_blank">여기서 설치</a>하세요.
+</div>
+
+<script>
+  // ⚠️ 아래 URL을 실제 Tally 폼 URL로 교체하세요.
+  const TALLY_FORM_URL = "https://tally.so/r/A7eL2o";
+  // Tally에서 설정한 Hidden Field 이름과 정확히 일치해야 합니다.
+  const HIDDEN_FIELD_NAME = "wallet_address";
+
+  const btn = document.getElementById("connectBtn");
+  const statusEl = document.getElementById("status");
+
+  btn.addEventListener("click", connectWallet);
+
+  async function connectWallet() {
+    statusEl.innerHTML = "";
+    statusEl.classList.remove("error");
+
+    if (typeof window.ethereum === "undefined") {
+      statusEl.innerHTML = "❌ MetaMask가 설치되어 있지 않습니다. 설치 후 페이지를 새로고침하세요.";
+      statusEl.classList.add("error");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "연결 중...";
+
+    try {
+      // 계정 접근 요청 (서명/트랜잭션 요청 아님 — 주소 읽기 권한만)
+      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+      const address = accounts[0];
+
+      if (!address) {
+        throw new Error("지갑 주소를 가져오지 못했습니다.");
+      }
+
+      statusEl.innerHTML = `✅ 연결 성공!<div id="address">${address}</div>잠시 후 제출 폼으로 이동합니다...`;
+
+      // Tally 폼으로 리다이렉트 (Hidden Field에 주소 전달)
+      const redirectUrl = `${TALLY_FORM_URL}?${HIDDEN_FIELD_NAME}=${encodeURIComponent(address)}`;
+      setTimeout(() => {
+        window.location.href = redirectUrl;
+      }, 1200);
+
+    } catch (err) {
+      if (err.code === 4001) {
+        statusEl.innerHTML = "연결이 취소되었습니다. 다시 시도해주세요.";
+      } else {
+        statusEl.innerHTML = `❌ 오류: ${err.message}`;
+        statusEl.classList.add("error");
+      }
+      statusEl.classList.add("error");
+      btn.disabled = false;
+      btn.textContent = "🦊 Connect Wallet (MetaMask)";
+    }
+  }
+</script>
+
+</body>
+</html>
