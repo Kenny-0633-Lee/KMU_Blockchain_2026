@@ -33,4 +33,5 @@ Admin/*.csv
 Admin/*.json
 !Admin/.gitkeep
 00_Scripts/*.py
-!00_Scripts/README.mdAdmin/CURRICULUM_TODO.md
+!00_Scripts/README.md
+Admin/CURRICULUM_TODO.md
