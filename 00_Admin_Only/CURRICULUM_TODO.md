@@ -2,7 +2,7 @@
 
 **계명대학교 대학원 컴퓨터공학과 | Special Topics on Distributed Systems (A2037-01) | 2026년 2학기**
 
-*최종 업데이트: 2026-08-25 | 문서 버전: v1.0*
+*최종 업데이트: 2026-08-25 | 문서 버전: v1.1*
 
 > 이 문서는 KNU `blockchain_curriculum_vXXX.md` + `vXXX_matrix_todo.md` 두 파일을 통합·축약한 것입니다.
 > **Single Source of Truth = Notion 허브** (비공개 초대제). 이 문서와 Notion 내용이 다르면 Notion이 기준입니다.
@@ -26,6 +26,7 @@
 | 버전 | 날짜 | 주요 변경 |
 |------|------|----------|
 | v1.0 | 2026-08-25 | KNU→KMU 레포 이관, 15주 재설계(연구트랙 도입), 평가구조 확정(10/30/40/20), Sparrow Wallet 오류 수정, 이 문서 최초 작성 |
+| v1.1 | 2026-08-25 | 7주차 Bitcoin 지갑(Sparrow Wallet) 핸즈온 실습 제외 확정 — UTXO/Bitcoin Architecture는 개념 설명만 유지, PoW 시뮬레이터만 실습으로 남김 (Ethereum 중심·연구 중심 방향과 정합성 확보) |
 
 ---
 
@@ -39,7 +40,7 @@
 | 4 | Symmetric Crypto (SHA-256+AES) | week04 | ✅ | 그대로 재사용, 검증 완료 |
 | 5 | Asymmetric Crypto (ECDSA+BIP-39) | week05 | ✅ | 그대로 재사용, 검증 완료 |
 | 6 | 연구주제 선정+프로포절 발표 | 없음 | ⬜ | 신규 제작, 템플릿 불필요(Notion 안내만) |
-| 7 | Consensus+Bitcoin Architecture | week06+week08(KNU 신주차번호 기준) | 🔄→✅ | **Electrum→Sparrow Wallet 수정 완료 (2026-08-25)** |
+| 7 | Consensus+Bitcoin Architecture(개념) | week06 (PoW만 재사용, Bitcoin 지갑 실습 제외) | ✅ | **Sparrow Wallet 실습 제외 확정 (2026-08-25), PoW 시뮬레이터만 유지** |
 | 8 | Ethereum+Smart Contracts (Remix) | week09+10 | 📥 | — |
 | 9 | Web3+DApp (Hardhat) | week11+12 | 📥 | KNU 원본 Hardhat 버전 확인 필요 (v2 확정 여부) |
 | 10 | 연구발표 A+논문발제 | 없음 | ⬜ | 수강인원 확정 후 세부구조 결정 |
@@ -58,7 +59,6 @@
 | 항목 | 현재 상태 | 리스크 | 대응 |
 |------|----------|--------|------|
 | Sepolia Testnet | 사용 중 | **EOL 예상 2026-09-30**, 개강 시점과 겹침 | 개강 직전(8월 말) 재확인 예정, setup 문서에 각주 반영 완료 |
-| Bitcoin 지갑 도구 | Sparrow Wallet | KNU 구버전 자료에 Electrum 잔존 가능성 | week07 수정 완료, 다른 주차 작성 시 재확인 |
 | Hardhat 버전 | KMU는 미사용(Remix 유지) | 해당없음 | week09(Web3+DApp)에서만 Hardhat 사용 — KNU 원본이 v2/v3 중 무엇인지 확인 필요 |
 | Node.js | v22 LTS 가정 | KNU 구버전 자료에 v20 언급 가능성 | 문서 작성 시 확인 |
 | Rarible/OpenSea | testnet.rarible.com 사용 | 낮음 (KNU에서 이미 검증됨) | — |
