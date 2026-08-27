@@ -29,8 +29,8 @@ private_key.txt
 mnemonic.txt
 
 # 교수용 민감 파일 (CSV, 학생 개인정보, 배포 결과)
-00_Admin_Only/*.csv
-00_Admin_Only/*.json
-!00_Admin_Only/.gitkeep
+Admin/*.csv
+Admin/*.json
+!Admin/.gitkeep
 00_Scripts/*.py
-!00_Scripts/README.md
+!00_Scripts/README.mdAdmin/CURRICULUM_TODO.md
