@@ -14,9 +14,10 @@ pragma solidity ^0.8.20;
  * 배포: Remix IDE → Injected Provider (MetaMask Sepolia)
  */
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v5.0.0/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v5.0.0/contracts/access/Ownable.sol";
-
+// import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v5.0.0/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+// import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v5.0.0/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts@5.0.0/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts@5.0.0/access/Ownable.sol";
 contract KMUNFT is ERC721URIStorage, Ownable {
 
     // ── State ──

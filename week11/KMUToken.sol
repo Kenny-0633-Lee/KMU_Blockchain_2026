@@ -16,9 +16,10 @@ pragma solidity ^0.8.20;
  * OpenZeppelin Import: Remix가 자동으로 GitHub에서 다운로드
  */
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-
+// import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+// import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts@5.0.0/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts@5.0.0/access/Ownable.sol";
 contract KMUToken is ERC20, Ownable {
     // ── 상수 ──
     uint256 public constant MAX_SUPPLY = 100_000_000 * 10 ** 18; // 1억 KMUT 최대 발행량
