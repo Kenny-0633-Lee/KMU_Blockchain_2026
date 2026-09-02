@@ -266,8 +266,8 @@ wheels = [
 ]
 
 [[package]]
-name = "blockchain-knu2026"
-version = "0.93.0"
+name = "blockchain-kmu2026"
+version = "1.0.0"
 source = { virtual = "." }
 dependencies = [
     { name = "base58" },
