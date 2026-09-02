@@ -1,7 +1,7 @@
 {
   "name": "blockchain-2026-week12",
   "version": "0.1.0",
-  "description": "12주차 ethers.js 연동 실습",
+  "description": "9주차 ethers.js 연동 실습",
   "scripts": {
     "compile": "npx hardhat compile",
     "node": "npx hardhat node",

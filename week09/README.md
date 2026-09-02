@@ -1,4 +1,4 @@
-📅 Week 12 — ethers.js + DApp 연동
+📅 Week 09 — ethers.js + DApp 연동
 계명대학교 대학원 컴퓨터공학과 | Special Topics on Distributed Systems (A2037-01) | 2026년 2학기
 
 📚 강의 자료

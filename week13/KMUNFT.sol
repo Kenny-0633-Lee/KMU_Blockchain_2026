@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 /**
  * @title KMUNFT
- * @notice 14주차 실습 — ERC-721 NFT 발행
+ * @notice 13주차 실습 — ERC-721 NFT 발행
  *
  * 학습 목표:
  *   - ERC-721 표준: tokenId 기반 고유 소유권

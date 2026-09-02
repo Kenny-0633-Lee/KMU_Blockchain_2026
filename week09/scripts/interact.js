@@ -58,7 +58,7 @@ const { abi } = JSON.parse(fs.readFileSync(artifactPath, "utf8"));
 // ── 메인 실행 ─────────────────────────────────────────────────────────
 async function main() {
   console.log("=".repeat(55));
-  console.log("  12주차 — ethers.js 스마트 컨트랙트 연동 실습");
+  console.log("  9주차 — ethers.js 스마트 컨트랙트 연동 실습");
   console.log("=".repeat(55));
 
   // 1. Provider: 블록체인 읽기 전용 연결

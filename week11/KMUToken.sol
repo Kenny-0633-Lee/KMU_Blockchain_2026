@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 /**
  * @title KMUToken (KMUT)
- * @notice 13주차 실습 — ERC-20 토큰 발행
+ * @notice 11주차 실습 — ERC-20 토큰 발행
  *
  * 학습 목표:
  *   - ERC-20 표준: 6개 필수 함수 + 2개 이벤트

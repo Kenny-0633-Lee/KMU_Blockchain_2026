@@ -1,7 +1,7 @@
 [project]
-name = "blockchain-knu2026"
-version = "0.93.0"
-description = "경북대학교 블록체인 강의 실습 코드 — ICAB0203-001 (2026년 1학기)"
+name = "blockchain-kmu2026"
+version = "1.0.0"
+description = "계명대학교 대학원 블록체인 강의 실습 코드 — A2037-01 (2026년 2학기)"
 authors = [{ name = "Kenny Lee", email = "infosec@knu.ac.kr" }]
 requires-python = ">=3.11"
 # [핵심] 모든 실습에 필요한 패키지는 여기에 위치해야 합니다.

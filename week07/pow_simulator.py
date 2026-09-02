@@ -1,7 +1,7 @@
 """
 week06/pow_simulator.py
 =======================
-6주차 — Proof of Work (PoW) 채굴 시뮬레이터
+7주차 — Proof of Work (PoW) 채굴 시뮬레이터
 
 학습 목표:
   - PoW 합의 알고리즘의 작동 원리 구현
@@ -245,7 +245,7 @@ def demo_pos_comparison():
 # ──────────────────────────────────────────────
 
 if __name__ == "__main__":
-    print("\n⛏  6주차 실습: Proof of Work 채굴 시뮬레이터\n")
+    print("\n⛏  7주차 실습: Proof of Work 채굴 시뮬레이터\n")
 
     demo_basic_mining()
     demo_difficulty_vs_time()

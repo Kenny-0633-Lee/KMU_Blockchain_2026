@@ -1,7 +1,7 @@
 """
 week03/merkle_tree.py
 =====================
-3주차 — Merkle Tree 구현
+2주차 — Merkle Tree 구현
 
 학습 목표:
   - Merkle Tree의 구조와 작동 원리 이해
@@ -228,7 +228,7 @@ def scenario_tamper():
 # ──────────────────────────────────────────────
 
 if __name__ == "__main__":
-    print("\n🌳 3주차 실습: Merkle Tree 구현\n")
+    print("\n🌳 2주차 실습: Merkle Tree 구현\n")
 
     scenario_basic()
     print()

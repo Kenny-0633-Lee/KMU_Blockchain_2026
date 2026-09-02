@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 /**
  * @title SimpleStorage
- * @notice 10주차 실습 — Solidity 첫 스마트 컨트랙트
+ * @notice 8주차 실습 — Solidity 첫 스마트 컨트랙트
  *
  * 학습 목표:
  *   - Solidity 기본 문법: state variable, function, modifier
