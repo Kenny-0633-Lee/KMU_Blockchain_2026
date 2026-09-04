@@ -7,20 +7,13 @@ distribute_eth.py — Tally 폼 제출 학생 지갑에 Sepolia 테스트 ETH �
     - sent_log.json은 필터링용이 아니라 "전송 이력 기록"용이다 (append-only).
 
 사용 예시:
-    # dry-run (실제 전송 없이 대상 목록만 확인)
-    uv run python distribute_eth.py --dry-run
-
-    # 실제 전송 (기본 0.1 ETH, Tally API로 최신 제출건 조회)
-    uv run python distribute_eth.py
-
-    # 금액을 다르게 주고 싶을 때만 --amount 지정
-    uv run python distribute_eth.py --amount 0.2
-
-    # CSV로 대체 입력 (Tally API 키가 없을 때)
-    uv run python distribute_eth.py --csv submissions.csv
+    uv run python Admin/distribute_eth.py --dry-run
+    uv run python Admin/distribute_eth.py
+    uv run python Admin/distribute_eth.py --amount 0.2
+    uv run python Admin/distribute_eth.py --csv Admin/submissions.csv
 
 전제:
-    .env 파일에 아래 값 필요 (Admin/.env, 절대 커밋 금지)
+    Admin/.env 파일에 아래 값 필요 (절대 커밋 금지)
         ALCHEMY_SEPOLIA_URL=...
         ADMIN_PRIVATE_KEY=...          # 0x 접두사 없이 64자리
         TALLY_API_KEY=...              # --csv 사용 시 불필요
@@ -52,7 +45,6 @@ DEFAULT_AMOUNT_ETH = 0.1
 # ─────────────────────────────────────────────────────────
 
 def fetch_from_tally_api(form_id: str, api_key: str) -> list[dict]:
-    """Tally API에서 전체 제출건을 페이지네이션으로 수집한다."""
     submissions = []
     page = 1
     headers = {"Authorization": f"Bearer {api_key}"}
@@ -88,7 +80,6 @@ def fetch_from_csv(csv_path: str) -> list[dict]:
 
 
 def extract_wallet_address(row: dict) -> str | None:
-    """행(row)에서 0x로 시작하는 42자리 지갑 주소를 찾는다."""
     for value in row.values():
         if isinstance(value, str) and value.startswith("0x") and len(value) == 42:
             return value
@@ -100,9 +91,26 @@ def extract_wallet_address(row: dict) -> str | None:
 # ─────────────────────────────────────────────────────────
 
 def load_history() -> list[dict]:
-    if LOG_PATH.exists():
-        return json.loads(LOG_PATH.read_text(encoding="utf-8"))
-    return []
+    """sent_log.json을 읽는다. 구버전(딕셔너리) 형식이면 백업 후 새로 시작한다."""
+    if not LOG_PATH.exists():
+        return []
+
+    data = json.loads(LOG_PATH.read_text(encoding="utf-8"))
+
+    if isinstance(data, list):
+        return data
+
+    # 구버전(주소를 key로 쓰던 dict) 형식 감지 → 백업 후 마이그레이션
+    backup_path = LOG_PATH.with_name("sent_log.legacy_backup.json")
+    LOG_PATH.rename(backup_path)
+    print(f"⚠️  구버전 형식의 sent_log.json을 발견해 {backup_path.name}으로 백업하고 새로 시작합니다.")
+
+    migrated = []
+    if isinstance(data, dict):
+        for addr, entry in data.items():
+            if isinstance(entry, dict):
+                migrated.append({"address": addr, **entry})
+    return migrated
 
 
 def append_history(history: list[dict], entry: dict) -> None:
@@ -137,14 +145,13 @@ def main():
     parser = argparse.ArgumentParser(description="Tally 제출 학생 전원에게 Sepolia 테스트 ETH 매회 전송 (중복 방지 없음)")
     parser.add_argument("--amount", type=float, default=DEFAULT_AMOUNT_ETH,
                          help=f"학생당 전송 금액 (ETH 단위, 기본값 {DEFAULT_AMOUNT_ETH})")
-    parser.add_argument("--csv", type=str, default=None, help="Tally API 대신 CSV 파일 사용 (Tally 내보내기 파일 경로)")
+    parser.add_argument("--csv", type=str, default=None, help="Tally API 대신 CSV 파일 사용")
     parser.add_argument("--dry-run", action="store_true", help="실제 전송 없이 대상 목록만 출력")
     args = parser.parse_args()
 
     if args.amount <= 0:
         sys.exit("❌ --amount 는 0보다 커야 합니다.")
 
-    # 4-1. 제출 데이터 수집
     if args.csv:
         print(f"📄 CSV에서 제출 데이터 로드: {args.csv}")
         rows = fetch_from_csv(args.csv)
@@ -158,7 +165,6 @@ def main():
 
     print(f"   총 {len(rows)}건 제출 확인")
 
-    # 4-2. 주소 추출 + 고유화 (같은 주소가 여러 행에 있으면 1회만 전송)
     addr_set = set()
     skipped_no_address = 0
     for row in rows:
@@ -186,7 +192,6 @@ def main():
         print(f"\n🧪 [DRY RUN] 실제 전송은 수행하지 않았습니다. (대상 {len(targets)}명 × {args.amount} ETH)")
         return
 
-    # 4-3. 실제 전송
     rpc_url = os.getenv("ALCHEMY_SEPOLIA_URL")
     private_key = os.getenv("ADMIN_PRIVATE_KEY")
     if not rpc_url or not private_key:
@@ -210,21 +215,30 @@ def main():
 
     history = load_history()
     nonce = w3.eth.get_transaction_count(account.address, "pending")
+
     for addr in targets:
+        # (1) 온체인 전송 — 이게 성공해야만 nonce를 증가시킨다
         try:
             tx_hash = send_eth(w3, account, addr, args.amount, nonce)
+        except Exception as e:
+            print(f"  ❌ {addr} 전송 실패: {e}")
+            continue  # nonce 그대로 유지, 다음 주소도 같은 nonce로 재시도
+
+        nonce += 1
+        print(f"  ✅ {addr} → {tx_hash}")
+
+        # (2) 이력 기록 — 실패해도 전송 자체는 이미 성공했으므로 nonce에 영향 없음
+        try:
             append_history(history, {
                 "address": addr,
                 "amount_eth": args.amount,
                 "tx_hash": tx_hash,
                 "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
             })
-            print(f"  ✅ {addr} → {tx_hash}")
-            nonce += 1
         except Exception as e:
-            print(f"  ❌ {addr} 전송 실패: {e}")
+            print(f"  ⚠️  이력 기록 실패 (전송 자체는 성공함): {e}")
 
-    print(f"\n완료. 총 {len(targets)}건 시도. 이력은 {LOG_PATH} 에 누적 기록됨.")
+    print(f"\n완료. 이력은 {LOG_PATH} 에 누적 기록됨.")
 
 
 if __name__ == "__main__":
