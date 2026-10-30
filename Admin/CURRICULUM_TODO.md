@@ -2,7 +2,7 @@
 
 **계명대학교 대학원 컴퓨터공학과 | Special Topics on Distributed Systems (A2037-01) | 2026년 2학기**
 
-*최종 업데이트: 2026-08-25 | 문서 버전: v1.1*
+*최종 업데이트: 2026-10-30 | 문서 버전: v1.2*
 
 > 이 문서는 KNU `blockchain_curriculum_vXXX.md` + `vXXX_matrix_todo.md` 두 파일을 통합·축약한 것입니다.
 > **Single Source of Truth = Notion 허브** (비공개 초대제). 이 문서와 Notion 내용이 다르면 Notion이 기준입니다.
@@ -27,6 +27,7 @@
 |------|------|----------|
 | v1.0 | 2026-08-25 | KNU→KMU 레포 이관, 15주 재설계(연구트랙 도입), 평가구조 확정(10/30/40/20), Sparrow Wallet 오류 수정, 이 문서 최초 작성 |
 | v1.1 | 2026-08-25 | 7주차 Bitcoin 지갑(Sparrow Wallet) 핸즈온 실습 제외 확정 — UTXO/Bitcoin Architecture는 개념 설명만 유지, PoW 시뮬레이터만 실습으로 남김 (Ethereum 중심·연구 중심 방향과 정합성 확보) |
+| v1.2 | 2026-10-30 | 발표를 10·12주(개인, 10분 이내)로 조정, 13주 예비·최종 정리 제출, 14·15주 공휴일(보강 별도 공지). 7주 이후 덱 재구성(7 Consensus·Bitcoin / 8 Ethereum·SC / 9 SRE 맛보기 / 11 토큰 표준 코드 해부·DApp). 11주는 Remix VM + 로컬 Hardhat 사용. week09 hardhat 컴파일러 버전 정합(0.8.28), 주석·메타데이터 정리 |
 
 ---
 
@@ -40,17 +41,17 @@
 | 4 | Symmetric Crypto (SHA-256+AES) | week04 | ✅ | 그대로 재사용, 검증 완료 |
 | 5 | Asymmetric Crypto (ECDSA+BIP-39) | week05 | ✅ | 그대로 재사용, 검증 완료 |
 | 6 | 연구주제 선정+프로포절 발표 | 없음 | ⬜ | 신규 제작, 템플릿 불필요(Notion 안내만) |
-| 7 | Consensus+Bitcoin Architecture(개념) | week06 (PoW만 재사용, Bitcoin 지갑 실습 제외) | ✅ | **Sparrow Wallet 실습 제외 확정 (2026-08-25), PoW 시뮬레이터만 유지** |
-| 8 | Ethereum+Smart Contracts (Remix) | week09+10 | 📥 | — |
-| 9 | Web3+DApp (Hardhat) | week11+12 | 📥 | KNU 원본 Hardhat 버전 확인 필요 (v2 확정 여부) |
-| 10 | 연구발표 A+논문발제 | 없음 | ⬜ | 수강인원 확정 후 세부구조 결정 |
-| 11 | ERC-20 | week13 (KMUToken.sol) | ✅ | 리브랜딩 완료, Remix 유지 확정 |
-| 12 | 연구발표 B+논문발제 | 없음 | ⬜ | 〃 |
-| 13 | NFT & ERC-721 | week14 (KMUNFT.sol) | ✅ | 리브랜딩 완료, Remix 유지 확정 |
-| 14 | 연구발표 C+논문발제 | 없음 | ⬜ | 〃 |
-| 15 | 연구발표 D+종합정리 | 없음 | ⬜ | 신규 제작 |
+| 7 | Consensus+Bitcoin 핵심(개념) | week07 | ✅ | PoW 시뮬레이터만 실습, Bitcoin 지갑 실습 제외 |
+| 8 | Ethereum+Smart Contracts 핵심 | week08 | ✅ | Remix + Sepolia 시연 1회, SRE 사전 설치 안내 |
+| 9 | SRE 맛보기 + 토큰 개념 | 레포 밖(SRE) | 🔄 | 로컬 시뮬레이션. Token Vendor 챌린지 제공 상태 수업 전 점검 |
+| 10 | 논문발제/연구발표 ① | 없음 | ✅ | A조 논문 + B조 연구 (개인, 10분 이내) |
+| 11 | 토큰 표준 코드 해부 + DApp | week11, week13, week09 | 🔄 | Remix VM + 로컬 Hardhat(ethers.js). 시나리오 결과 수업 전 실측 |
+| 12 | 논문발제/연구발표 ② | 없음 | ✅ | B조 논문 + A조 연구 |
+| 13 | 예비 · 최종 정리 제출 | 없음 | ✅ | 발표 결원 보강 우선 |
+| 14 | 공휴일(12/25) | — | — | 보강 일정 별도 공지 |
+| 15 | 공휴일(1/1) | — | — | 보강 일정 별도 공지 |
 
-**요약**: ✅완료 5 · 📥재사용확보 4 · ⬜신규필요 6 · 🔄수정중 0
+**요약**: 1~5주·7~8·10·12~13주 완료 · 6주 프로포절(진행안) · 9·11주 수업 전 점검 필요 · 14·15주 공휴일(보강 별도)
 
 ---
 
@@ -58,8 +59,8 @@
 
 | 항목 | 현재 상태 | 리스크 | 대응 |
 |------|----------|--------|------|
-| Sepolia Testnet | 사용 중 | **EOL 예상 2026-09-30**, 개강 시점과 겹침 | 개강 직전(8월 말) 재확인 예정, setup 문서에 각주 반영 완료 |
-| Hardhat 버전 | KMU는 미사용(Remix 유지) | 해당없음 | week09(Web3+DApp)에서만 Hardhat 사용 — KNU 원본이 v2/v3 중 무엇인지 확인 필요 |
+| Sepolia Testnet | 사용 중 (2026-10-29 정상 운영 확인) | EF 수명표상 종료 예정(2026-09-30) 경과, 연장/폐기 공지 미확인 | 사용은 8주차 시연 1회로 한정, 나머지는 로컬. 수업 직전 재확인 |
+| Hardhat 버전 | week09 폴더에서 Hardhat 2.x 사용 (11주 로컬 실습에 재사용) | 컴파일러 버전 불일치 (Lock.sol ^0.8.28 vs 설정 0.8.20) | hardhat.config.js를 0.8.28로 정합 (2026-10-30) |
 | Node.js | v22 LTS 가정 | KNU 구버전 자료에 v20 언급 가능성 | 문서 작성 시 확인 |
 | Rarible/OpenSea | testnet.rarible.com 사용 | 낮음 (KNU에서 이미 검증됨) | — |
 

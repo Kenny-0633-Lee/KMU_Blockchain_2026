@@ -1,5 +1,5 @@
 /**
- * week12/scripts/interact.js
+ * week09/scripts/interact.js
  * ===========================
  * ethers.js v6 — SimpleStorage 컨트랙트 연동 실습
  *
@@ -11,7 +11,7 @@
  *   2. scripts\deploy.js 로 배포 완료 후 .env 에 주소 기록
  *      또는 아래 CONTRACT_ADDRESS 상수를 직접 수정
  *
- * .env 파일 (week12\.env):
+ * .env 파일 (week09\.env):
  *   CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
  */
 

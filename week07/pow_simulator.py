@@ -1,5 +1,5 @@
 """
-week06/pow_simulator.py
+week07/pow_simulator.py
 =======================
 7주차 — Proof of Work (PoW) 채굴 시뮬레이터
 
@@ -11,7 +11,7 @@ week06/pow_simulator.py
   - 51% 공격의 이론적 비용 계산
 
 실행:
-  uv run python week06/pow_simulator.py
+  uv run python week07/pow_simulator.py
 """
 
 import hashlib

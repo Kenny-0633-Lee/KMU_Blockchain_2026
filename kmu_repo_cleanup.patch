@@ -1,0 +1,256 @@
+diff --git a/Admin/CURRICULUM_TODO.md b/Admin/CURRICULUM_TODO.md
+index edbd6a6..f3cc5b7 100644
+--- a/Admin/CURRICULUM_TODO.md
++++ b/Admin/CURRICULUM_TODO.md
+@@ -2,7 +2,7 @@
+ 
+ **계명대학교 대학원 컴퓨터공학과 | Special Topics on Distributed Systems (A2037-01) | 2026년 2학기**
+ 
+-*최종 업데이트: 2026-08-25 | 문서 버전: v1.1*
++*최종 업데이트: 2026-10-30 | 문서 버전: v1.2*
+ 
+ > 이 문서는 KNU `blockchain_curriculum_vXXX.md` + `vXXX_matrix_todo.md` 두 파일을 통합·축약한 것입니다.
+ > **Single Source of Truth = Notion 허브** (비공개 초대제). 이 문서와 Notion 내용이 다르면 Notion이 기준입니다.
+@@ -27,6 +27,7 @@
+ |------|------|----------|
+ | v1.0 | 2026-08-25 | KNU→KMU 레포 이관, 15주 재설계(연구트랙 도입), 평가구조 확정(10/30/40/20), Sparrow Wallet 오류 수정, 이 문서 최초 작성 |
+ | v1.1 | 2026-08-25 | 7주차 Bitcoin 지갑(Sparrow Wallet) 핸즈온 실습 제외 확정 — UTXO/Bitcoin Architecture는 개념 설명만 유지, PoW 시뮬레이터만 실습으로 남김 (Ethereum 중심·연구 중심 방향과 정합성 확보) |
++| v1.2 | 2026-10-30 | 발표를 10·12주(개인, 10분 이내)로 조정, 13주 예비·최종 정리 제출, 14·15주 공휴일(보강 별도 공지). 7주 이후 덱 재구성(7 Consensus·Bitcoin / 8 Ethereum·SC / 9 SRE 맛보기 / 11 토큰 표준 코드 해부·DApp). 11주는 Remix VM + 로컬 Hardhat 사용. week09 hardhat 컴파일러 버전 정합(0.8.28), 주석·메타데이터 정리 |
+ 
+ ---
+ 
+@@ -40,17 +41,17 @@
+ | 4 | Symmetric Crypto (SHA-256+AES) | week04 | ✅ | 그대로 재사용, 검증 완료 |
+ | 5 | Asymmetric Crypto (ECDSA+BIP-39) | week05 | ✅ | 그대로 재사용, 검증 완료 |
+ | 6 | 연구주제 선정+프로포절 발표 | 없음 | ⬜ | 신규 제작, 템플릿 불필요(Notion 안내만) |
+-| 7 | Consensus+Bitcoin Architecture(개념) | week06 (PoW만 재사용, Bitcoin 지갑 실습 제외) | ✅ | **Sparrow Wallet 실습 제외 확정 (2026-08-25), PoW 시뮬레이터만 유지** |
+-| 8 | Ethereum+Smart Contracts (Remix) | week09+10 | 📥 | — |
+-| 9 | Web3+DApp (Hardhat) | week11+12 | 📥 | KNU 원본 Hardhat 버전 확인 필요 (v2 확정 여부) |
+-| 10 | 연구발표 A+논문발제 | 없음 | ⬜ | 수강인원 확정 후 세부구조 결정 |
+-| 11 | ERC-20 | week13 (KMUToken.sol) | ✅ | 리브랜딩 완료, Remix 유지 확정 |
+-| 12 | 연구발표 B+논문발제 | 없음 | ⬜ | 〃 |
+-| 13 | NFT & ERC-721 | week14 (KMUNFT.sol) | ✅ | 리브랜딩 완료, Remix 유지 확정 |
+-| 14 | 연구발표 C+논문발제 | 없음 | ⬜ | 〃 |
+-| 15 | 연구발표 D+종합정리 | 없음 | ⬜ | 신규 제작 |
+-
+-**요약**: ✅완료 5 · 📥재사용확보 4 · ⬜신규필요 6 · 🔄수정중 0
++| 7 | Consensus+Bitcoin 핵심(개념) | week07 | ✅ | PoW 시뮬레이터만 실습, Bitcoin 지갑 실습 제외 |
++| 8 | Ethereum+Smart Contracts 핵심 | week08 | ✅ | Remix + Sepolia 시연 1회, SRE 사전 설치 안내 |
++| 9 | SRE 맛보기 + 토큰 개념 | 레포 밖(SRE) | 🔄 | 로컬 시뮬레이션. Token Vendor 챌린지 제공 상태 수업 전 점검 |
++| 10 | 논문발제/연구발표 ① | 없음 | ✅ | A조 논문 + B조 연구 (개인, 10분 이내) |
++| 11 | 토큰 표준 코드 해부 + DApp | week11, week13, week09 | 🔄 | Remix VM + 로컬 Hardhat(ethers.js). 시나리오 결과 수업 전 실측 |
++| 12 | 논문발제/연구발표 ② | 없음 | ✅ | B조 논문 + A조 연구 |
++| 13 | 예비 · 최종 정리 제출 | 없음 | ✅ | 발표 결원 보강 우선 |
++| 14 | 공휴일(12/25) | — | — | 보강 일정 별도 공지 |
++| 15 | 공휴일(1/1) | — | — | 보강 일정 별도 공지 |
++
++**요약**: 1~5주·7~8·10·12~13주 완료 · 6주 프로포절(진행안) · 9·11주 수업 전 점검 필요 · 14·15주 공휴일(보강 별도)
+ 
+ ---
+ 
+@@ -58,8 +59,8 @@
+ 
+ | 항목 | 현재 상태 | 리스크 | 대응 |
+ |------|----------|--------|------|
+-| Sepolia Testnet | 사용 중 | **EOL 예상 2026-09-30**, 개강 시점과 겹침 | 개강 직전(8월 말) 재확인 예정, setup 문서에 각주 반영 완료 |
+-| Hardhat 버전 | KMU는 미사용(Remix 유지) | 해당없음 | week09(Web3+DApp)에서만 Hardhat 사용 — KNU 원본이 v2/v3 중 무엇인지 확인 필요 |
++| Sepolia Testnet | 사용 중 (2026-10-29 정상 운영 확인) | EF 수명표상 종료 예정(2026-09-30) 경과, 연장/폐기 공지 미확인 | 사용은 8주차 시연 1회로 한정, 나머지는 로컬. 수업 직전 재확인 |
++| Hardhat 버전 | week09 폴더에서 Hardhat 2.x 사용 (11주 로컬 실습에 재사용) | 컴파일러 버전 불일치 (Lock.sol ^0.8.28 vs 설정 0.8.20) | hardhat.config.js를 0.8.28로 정합 (2026-10-30) |
+ | Node.js | v22 LTS 가정 | KNU 구버전 자료에 v20 언급 가능성 | 문서 작성 시 확인 |
+ | Rarible/OpenSea | testnet.rarible.com 사용 | 낮음 (KNU에서 이미 검증됨) | — |
+ 
+diff --git a/README.md b/README.md
+index 23f59bb..c24b6dd 100644
+--- a/README.md
++++ b/README.md
+@@ -26,7 +26,7 @@
+ | --- | --- | --- |
+ | 출석 | 10% | |
+ | 프로포절 발표 | 30% | 6주차, 중간고사 대체 |
+-| 논문발제 + 연구발표 | 40% | 10·12·14주차, 기말고사 대체 |
++| 논문발제 + 연구발표 | 40% | 10·12주차(잠정), 기말고사 대체 |
+ | 실습실행평가 | 20% | 실행 여부(ON/OFF) 확인, 세부 배점표 없음 |
+ 
+ 필기시험은 실시하지 않습니다.
+@@ -43,15 +43,17 @@
+ | 4 | Cryptography: Symmetric (SHA-256, AES) | Python |
+ | 5 | Cryptography: Asymmetric (ECDSA, BIP-39) | Python |
+ | 6 | **연구주제 선정 + 프로포절 발표** | — |
+-| 7 | Consensus + Bitcoin Architecture (개념) | Python (PoW 시뮬레이터) |
+-| 8 | Ethereum Architecture + Smart Contracts | Remix IDE |
+-| 9 | Web3 + DApp | Hardhat, ethers.js |
+-| 10 | **연구발표 A** + 논문 발제 | — |
+-| 11 | ERC-20 | Remix IDE |
+-| 12 | **연구발표 B** + 논문 발제 | — |
+-| 13 | NFT & ERC-721 | Remix IDE, Pinata(IPFS) |
+-| 14 | **연구발표 C** + 논문 발제 | — |
+-| 15 | 종합정리 | — |
++| 7 | Consensus + Bitcoin 핵심 (개념) | Python (PoW 시뮬레이터) |
++| 8 | Ethereum 구조 + 스마트 컨트랙트 핵심 | Remix IDE, Sepolia(시연) |
++| 9 | SRE 맛보기 (Scaffold-ETH 2, 로컬) + 토큰 개념 | SRE |
++| 10 | **논문 발제 / 연구 발표 ①** (A조 논문, B조 연구) | — |
++| 11 | 토큰 표준 코드 해부(ERC-20/721) + DApp | Remix VM, Hardhat, ethers.js |
++| 12 | **논문 발제 / 연구 발표 ②** (B조 논문, A조 연구) | — |
++| 13 | 예비 (발표 결원 보강) · 최종 정리 제출 | — |
++| 14 | 공휴일(12/25) — 보강 일정 별도 공지 | — |
++| 15 | 공휴일(1/1) — 보강 일정 별도 공지 | — |
++
++> 주차 배치와 날짜는 잠정이며 학사일정에 따라 변경될 수 있습니다. 최신 내용은 Notion 강의 허브를 기준으로 합니다.
+ 
+ ---
+ 
+@@ -59,12 +61,10 @@
+ 
+ ```
+ KMU_Blockchain_2026/
+-├── setup_common.md         ← 공통 개발환경 설정 가이드 (2주차용)
+ ├── week01/ ~ week15/       ← 주차별 실습 코드
+ ├── docs/                   ← 지갑 주소 수집용 연결 페이지 (GitHub Pages)
+-├── Admin/                  ← 관리자 전용 스크립트 (ETH 분배 등)
++├── Admin/                  ← 관리자 전용 스크립트·문서 (ETH 분배, 커리큘럼 TODO)
+ ├── pyproject.toml          ← Python 의존성 (uv 관리)
+-└── .env.example            ← 환경변수 템플릿
+ ```
+ 
+ ---
+@@ -77,11 +77,11 @@ cd KMU_Blockchain_2026
+ uv sync
+ ```
+ 
+-상세 개발환경 설정(Git · uv · VS Code · Node.js)은 [`setup_common.md`](./setup_common.md)를 참조하세요.
++상세 개발환경 설정(Git · uv · VS Code · Node.js)은 Notion 강의 허브의 "환경 설정 가이드"를 참조하세요.
+ 
+ ---
+ 
+ ## 주요 링크
+ 
+ - [Sepolia Etherscan](https://sepolia.etherscan.io) — 컨트랙트/트랜잭션 검증의 주(主) 경로
+-- [Speed Run Ethereum](https://speedrunethereum.com) — 11·13주 참고 절차
++- [Speed Run Ethereum](https://speedrunethereum.com) — 9주차 SRE 맛보기 실습 참고
+diff --git a/week07/pow_simulator.py b/week07/pow_simulator.py
+index e122e0d..f21860c 100644
+--- a/week07/pow_simulator.py
++++ b/week07/pow_simulator.py
+@@ -1,5 +1,5 @@
+ """
+-week06/pow_simulator.py
++week07/pow_simulator.py
+ =======================
+ 7주차 — Proof of Work (PoW) 채굴 시뮬레이터
+ 
+@@ -11,7 +11,7 @@ week06/pow_simulator.py
+   - 51% 공격의 이론적 비용 계산
+ 
+ 실행:
+-  uv run python week06/pow_simulator.py
++  uv run python week07/pow_simulator.py
+ """
+ 
+ import hashlib
+diff --git a/week09/env.example b/week09/env.example
+index a23191e..f663549 100644
+--- a/week09/env.example
++++ b/week09/env.example
+@@ -1,3 +1,6 @@
++# 로컬 Hardhat 노드 실습(9~11주)에서 deploy.js 출력 주소를 입력 (미설정 시 interact.js 기본 주소 사용)
++# CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
++
+ # Sepolia RPC URL (Alchemy 발급 주소를 그대로 사용)
+ SEPOLIA_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/YOUR_API_KEY
+ 
+diff --git a/week09/hardhat.config.js b/week09/hardhat.config.js
+index 3031e8d..306511a 100644
+--- a/week09/hardhat.config.js
++++ b/week09/hardhat.config.js
+@@ -5,7 +5,7 @@ require("dotenv").config();
+ require("@nomicfoundation/hardhat-toolbox");
+ 
+ module.exports = {
+-  solidity: "0.8.20",
++  solidity: "0.8.28",
+   networks: {
+     hardhat: { chainId: 31337 },
+     sepolia: {
+diff --git a/week09/scripts/deploy.js b/week09/scripts/deploy.js
+index f067090..61ada8e 100644
+--- a/week09/scripts/deploy.js
++++ b/week09/scripts/deploy.js
+@@ -1,5 +1,5 @@
+ /**
+- * week12/scripts/deploy.js
++ * week09/scripts/deploy.js
+  * interact.js 실행 전 이 스크립트로 먼저 배포
+  *
+  * 실행:
+diff --git a/week09/scripts/interact.js b/week09/scripts/interact.js
+index b4203ad..c3cd077 100644
+--- a/week09/scripts/interact.js
++++ b/week09/scripts/interact.js
+@@ -1,5 +1,5 @@
+ /**
+- * week12/scripts/interact.js
++ * week09/scripts/interact.js
+  * ===========================
+  * ethers.js v6 — SimpleStorage 컨트랙트 연동 실습
+  *
+@@ -11,7 +11,7 @@
+  *   2. scripts\deploy.js 로 배포 완료 후 .env 에 주소 기록
+  *      또는 아래 CONTRACT_ADDRESS 상수를 직접 수정
+  *
+- * .env 파일 (week12\.env):
++ * .env 파일 (week09\.env):
+  *   CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
+  */
+ 
+diff --git a/week13/KMUNFT.sol b/week13/KMUNFT.sol
+index 1dbe062..0bdcf64 100644
+--- a/week13/KMUNFT.sol
++++ b/week13/KMUNFT.sol
+@@ -115,7 +115,7 @@ contract KMUNFT is ERC721URIStorage, Ownable {
+ *    "attributes": [
+ *        { "trait_type": "Course", "value": "A2037-01" },
+ *        { "trait_type": "Student", "value": "본인 이름" },
+-*        { "trait_type": "Semester", "value": "2026 Spring" }
++*        { "trait_type": "Semester", "value": "2026 Fall" }
+ *    ]
+ * }
+ */
+\ No newline at end of file
+diff --git a/week13/metadata.json b/week13/metadata.json
+index 07bbcfa..29e2906 100644
+--- a/week13/metadata.json
++++ b/week13/metadata.json
+@@ -1,10 +1,10 @@
+ {
+-  "name": "KNU NFT #1234",
+-  "description": "경북대학교 블록체인 기술 강의 2026 — 수료 기념 NFT (ICAB0203-001)",
++  "name": "KMU NFT #1234",
++  "description": "계명대학교 분산시스템 특강 2026 — 수료 기념 NFT (A2037-01)",
+   "image": "ipfs://bafkreihen2kdck5eskr24gyhipsumzglysq3frrvfkvvrme4p42z66ditu",
+     "attributes": [
+-        { "trait_type": "Course", "value": "ICAB0203-001" },
++        { "trait_type": "Course", "value": "A2037-01" },
+         { "trait_type": "Student", "value": "이교수" },
+-        { "trait_type": "Semester", "value": "2026 Spring" }
++        { "trait_type": "Semester", "value": "2026 Fall" }
+     ]
+ }
+diff --git a/week13/sample_metadata.json b/week13/sample_metadata.json
+index 6887c0c..a1ae9d0 100644
+--- a/week13/sample_metadata.json
++++ b/week13/sample_metadata.json
+@@ -1,10 +1,10 @@
+ {
+-    "name": "KNU NFT #본인_학번_끝네자리",
+-    "description": "경북대학교 블록체인 기술 수업 NFT",
++    "name": "KMU NFT #본인_학번_끝네자리",
++    "description": "계명대학교 분산시스템 특강 NFT",
+     "image": "ipfs://본인_이미지_CID",
+     "attributes": [
+-        { "trait_type": "Course", "value": "ICAB0203-001" },
++        { "trait_type": "Course", "value": "A2037-01" },
+         { "trait_type": "Student", "value": "본인 이름" },
+-        { "trait_type": "Semester", "value": "2026 Spring" }
++        { "trait_type": "Semester", "value": "2026 Fall" }
+     ]
+ }

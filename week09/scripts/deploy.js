@@ -1,5 +1,5 @@
 /**
- * week12/scripts/deploy.js
+ * week09/scripts/deploy.js
  * interact.js 실행 전 이 스크립트로 먼저 배포
  *
  * 실행:

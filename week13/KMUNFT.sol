@@ -115,7 +115,7 @@ contract KMUNFT is ERC721URIStorage, Ownable {
 *    "attributes": [
 *        { "trait_type": "Course", "value": "A2037-01" },
 *        { "trait_type": "Student", "value": "본인 이름" },
-*        { "trait_type": "Semester", "value": "2026 Spring" }
+*        { "trait_type": "Semester", "value": "2026 Fall" }
 *    ]
 * }
 */

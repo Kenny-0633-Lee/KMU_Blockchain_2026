@@ -1,10 +1,10 @@
 {
-    "name": "KNU NFT #본인_학번_끝네자리",
-    "description": "경북대학교 블록체인 기술 수업 NFT",
+    "name": "KMU NFT #본인_학번_끝네자리",
+    "description": "계명대학교 분산시스템 특강 NFT",
     "image": "ipfs://본인_이미지_CID",
     "attributes": [
-        { "trait_type": "Course", "value": "ICAB0203-001" },
+        { "trait_type": "Course", "value": "A2037-01" },
         { "trait_type": "Student", "value": "본인 이름" },
-        { "trait_type": "Semester", "value": "2026 Spring" }
+        { "trait_type": "Semester", "value": "2026 Fall" }
     ]
 }
